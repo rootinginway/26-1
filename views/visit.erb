@@ -34,9 +34,9 @@
 
   <label>Ваш парикхмахер</label>
   <select name="barber" class="form-control">
-  <option>Walter White</option>
-  <option>Gus Fring</option>
-  <option>Jessie Pinkman</option>
+  <option <%=@barber == 'Walter White'? 'selected': '' %>>Walter White</option>
+  <option <%=@barber == 'Gus Fring'? 'selected': '' %>>Gus Fring</option>
+  <option <%=@barber == 'Jessie Pinkman'? 'selected': '' %>>Jessie Pinkman</option>
   </select>
     <button type="submit" class="btn btn-default">Записаться</button>
 </form>
