@@ -4,14 +4,18 @@ require 'sinatra'
 require 'sinatra/reloader'
 require 'sqlite3'
 
+def get_db
+	return SQLite3::Database.new 'barbershop.db'
+end
+
 configure do
-	@db = SQLite3::Database.new 'barbershop.db'
-	@db.execute 'CREATE TABLE IF NOT EXISTS "USERS" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, 
+	db = get_db
+	db.execute 'CREATE TABLE IF NOT EXISTS "USERS" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, 
 				"name" TEXT,
 				"phone" TEXT, 
 				"datestamp" TEXT, 
 				"barber" TEXT, 
-				"color" TEXT);'
+				"color" TEXT)'
 end
 
 get '/' do
@@ -76,6 +80,11 @@ post '/visit' do
 		end	
 	end
 
+	db = get_db	
+	db.execute 'insert into Users (name, phone, 
+	             datestamp, barber, color) values 
+	             (?, ?, ?, ?, ?)', 
+	             [@user_name, @phone, @time, @barber, @color]
 
 	@title = "Thank you!"
 	@message = "Dear #{@user_name}, we'll be waiting for you at #{@time}. Your barber is #{@barber}. #{@color}"
@@ -85,3 +94,4 @@ post '/visit' do
 	erb :message
 
 end
+
