@@ -1,5 +1,6 @@
 <h2>Записаться</h2>
 
+
 <form action="/visit" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Ваше имя</label>
@@ -11,7 +12,7 @@
   </div>
    <div class="form-group">
     <label for="exampleInputEmail1">Время записи</label>
-    <input id="aaa" name="time" type="text" class="form-control" id="exampleInputEmail1" placeholder="Введите Время" value="<%= @time %>">
+    <input id="datetimepicker" name="time" type="text" class="form-control" id="exampleInputEmail1" placeholder="Введите Время" value="<%= @time %>">
   </div>
 
 <div class="form-group">
@@ -41,12 +42,14 @@
     <button type="submit" class="btn btn-default">Записаться</button>
 </form>
 
-
-
 <script type="text/javascript">
-	
+
 $(function(){
-   $('#color').simplecolorpicker();
+$('#color').simplecolorpicker();
 });
+$('#datetimepicker').datetimepicker();
  
 </script>
+
+
+

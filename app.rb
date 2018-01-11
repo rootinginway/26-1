@@ -95,3 +95,6 @@ post '/visit' do
 
 end
 
+get '/showusers' do
+
+end
